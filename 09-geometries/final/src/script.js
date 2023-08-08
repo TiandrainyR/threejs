@@ -13,11 +13,18 @@ const scene = new THREE.Scene()
 /**
  * Object
  */
-const geometry = new THREE.BoxGeometry(1, 1, 1, 2, 2, 2,)
-const material = new THREE.MeshBasicMaterial({ 
-    color: 0xff0000,
-    wireframe: true
-})
+const geometry = new THREE.BufferGeometry()
+const count = 50
+const positionsArray = new Float32Array(count * 3 * 3)
+for(let i = 0; i < count * 3 * 3; i++)
+{
+    positionsArray[i] = (Math.random() - 0.5) * 4
+}
+const positionsAttribute = new THREE.BufferAttribute(positionsArray, 3)
+geometry.setAttribute('position', positionsAttribute)
+
+const material = new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true })
+
 const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
 
@@ -29,28 +36,20 @@ const sizes = {
     height: window.innerHeight
 }
 
-window.addEventListener('resize', ()=> {
-    //update sizes
+window.addEventListener('resize', () =>
+{
+    // Update sizes
     sizes.width = window.innerWidth
     sizes.height = window.innerHeight
 
-    //update camer
-    camera.aspect = sizes.width /sizes.height
+    // Update camera
+    camera.aspect = sizes.width / sizes.height
     camera.updateProjectionMatrix()
 
-    //update renderer
+    // Update renderer
     renderer.setSize(sizes.width, sizes.height)
-
-});
-
-window.addEventListener('dblclick', () => {
-    if ( !document.fullscreenElement ) {
-        canvas.requestFullscreen();
-    } else {
-        document.exitFullscreen();
-
-    }
-});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+})
 
 /**
  * Camera
@@ -71,7 +70,7 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
 renderer.setSize(sizes.width, sizes.height)
-renderer.setPixelRatio(window.devicePixelRatio, 2)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 /**
  * Animate

@@ -52,8 +52,9 @@ const colorTexture = textureLoader.load(
         console.log('textureLoader: loading error')
     }
 )
-colorTexture.wrapS = THREE.MirroredRepeatWrapping
-colorTexture.wrapT = THREE.MirroredRepeatWrapping
+// colorTexture.wrapS = THREE.MirroredRepeatWrapping
+// colorTexture.wrapT = THREE.MirroredRepeatWrapping
+
 // colorTexture.repeat.x = 2
 // colorTexture.repeat.y = 3
 // colorTexture.offset.x = 0.5
@@ -61,7 +62,8 @@ colorTexture.wrapT = THREE.MirroredRepeatWrapping
 // colorTexture.rotation = Math.PI * 0.25
 // colorTexture.center.x = 0.5
 // colorTexture.center.y = 0.5
-colorTexture.generateMipmaps = false
+
+// colorTexture.generateMipmaps = false
 colorTexture.minFilter = THREE.NearestFilter
 colorTexture.magFilter = THREE.NearestFilter
 
@@ -69,6 +71,7 @@ const alphaTexture = textureLoader.load('/textures/door/alpha.jpg')
 const heightTexture = textureLoader.load('/textures/door/height.jpg')
 const normalTexture = textureLoader.load('/textures/door/normal.jpg')
 const ambientOcclusionTexture = textureLoader.load('/textures/door/ambientOcclusion.jpg')
+
 const metalnessTexture = textureLoader.load('/textures/door/metalness.jpg')
 const roughnessTexture = textureLoader.load('/textures/door/roughness.jpg')
 
